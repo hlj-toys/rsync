@@ -2,10 +2,10 @@
 ARGS="$@"
 cat <<EOF > /etc/rsync
 #!/bin/sh
-echo "`date '+%Y-%m-%d %H:%M:%S'` start rsync..."
+echo "\`date '+%Y-%m-%d %H:%M:%S'\` start rsync..."
 USER=${USER} RSYNC_PASSWORD=${RSYNC_PASSWORD} /usr/bin/rsync \
 ${ARGS:--avP} /data/ rsync://${SERVER_ADDR}:${PORT}/data/${DATA_TARGET:-$HOSTNAME} >> /var/log/rsync.log
-echo "`date '+%Y-%m-%d %H:%M:%S'` rsync end."
+echo "\`date '+%Y-%m-%d %H:%M:%S'\` rsync end."
 EOF
 chmod +x /etc/rsync
 
