@@ -4,7 +4,7 @@ cat <<EOF > /etc/rsync
 #!/bin/sh
 
 USER=${USER} RSYNC_PASSWORD=${RSYNC_PASSWORD} /usr/bin/rsync \
-  ${ARGS:--avP}  /data rsync://${SERVER_ADDR}:${PORT}/data/${DATA_TARGET:-}
+  ${ARGS:--avP} /data rsync://${SERVER_ADDR}:${PORT}/data/${DATA_TARGET:-}
 EOF
 chmod +x /etc/rsync
 

@@ -32,6 +32,7 @@ This client supports run rsync by crond.
 $  docker run -d -v /your/data-folder:/data \
    -e SERVER_ADDR=<server>  -e PORT=<port> \
    -e USER=<username> -e RSYNC_PASSWORD=<password>  \
+   -e DATA_TARGET=<target_folder> \
    -e SCHEDULE="<schedule>" \
    betacz/rsync:client <rsync options>
 ```

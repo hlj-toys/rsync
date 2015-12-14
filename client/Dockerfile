@@ -9,4 +9,4 @@ VOLUME /data
 
 ADD ./run /usr/local/bin/run
 
-CMD ["/usr/local/bin/run"]
+ENTRYPOINT ["/usr/local/bin/run"]
