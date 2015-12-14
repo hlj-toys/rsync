@@ -1,0 +1,12 @@
+# Dockerfile for rsync client
+FROM alpine
+MAINTAINER BetaCZ <hlj8080@gmail.com>
+
+RUN apk add -U rsync \
+    && rm -rf /var/cache/apk/*
+
+VOLUME /data
+
+ADD ./run /usr/local/bin/run
+
+CMD ["/usr/local/bin/run"]

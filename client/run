@@ -1,0 +1,29 @@
+#!/bin/sh
+ARGS="$@"
+cat <<EOF > /etc/rsync
+#!/bin/sh
+
+USER=${USER} RSYNC_PASSWORD=${RSYNC_PASSWORD} /usr/bin/rsync \
+  ${ARGS:--avP}  /data rsync://${SERVER_ADDR}:${PORT}/data/${DATA_TARGET:-}
+EOF
+chmod +x /etc/rsync
+
+case $SCHEDULE in
+  15min)
+    mv /etc/rsync > /etc/periodic/15min/
+    ;;
+  hourly)
+    mv /etc/rsync > /etc/periodic/hourly/
+    ;;
+  daily)
+    mv /etc/rsync > /etc/periodic/daily/
+    ;;
+  weekly)
+    mv /etc/rsync > /etc/periodic/weekly/
+    ;;
+  *) 
+    echo "$SCHEDULE /etc/rsync" >> /etc/crontabs/root
+    ;;
+esac
+
+exec /usr/sbin/crond -f
