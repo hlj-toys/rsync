@@ -1,6 +1,6 @@
 # Dockerfile for rsync server
 FROM alpine
-MAINTAINER BetaCZ <hlj8080@gmail.com>
+LABEL authors="BetaCZ <hlj8080@gmail.com>"
 
 RUN apk add -U rsync \
     && rm -rf /var/cache/apk/*
